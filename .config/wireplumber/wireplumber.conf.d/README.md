@@ -17,7 +17,7 @@ The most straightforward way of doing this is to create a new config file in:
     
     ~/.config/wireplumber/wireplumber.conf.d
 
-If that directory doesn't exist you should create it(I'm on Fedora 42 and it did not).  For the config file, I named mine 10-map-stereo-channels.conf
+If that directory doesn't exist you should create it(I'm on Fedora 42 and it did not).  For the config file, I named mine `10-map-stereo-channels.conf`
 
 Next we need to get some details for the contents of our config file. Run:
 
