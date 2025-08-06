@@ -81,3 +81,8 @@ monitor.alsa.rules = [
 ]
 ```
 
+Restart wireplumber, etc.
+
+    systemctl --user restart wireplumber pipewire pipewire-pulse
+
+And you should start getting audio out automatically.  In my experience, after restarting I have had to restart already opened processes so that wireplumber tries to link thier audio again, but it works without issue after.
