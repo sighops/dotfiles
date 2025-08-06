@@ -56,10 +56,9 @@ audio.position = "AUX0,AUX1,AUX2,AUX3,AUX4,AUX5,AUX6,AUX7,AUX8,AUX9,AUX10,AUX11,
 node.name = "alsa_output.usb-Allen_Heath_Ltd_QU-SB-01.pro-output-0"
 ```
 
-As you can see above, the AUX30 and AUX31 channels correspond to channels 31/32 on my mixer.  What we need to do next is update the properties of this node so that those channels are renamed to FL and FR.  
-When wireplumber is creating links between output and input channels, it prefers to link channels with the same name.  Otherwise, it makes a best effort and eventually just falls back to picking the first two channels.  The logic for channel selection can be found here:
-https://github.com/PipeWire/wireplumber/blob/15f5f96693d6155750db3713d696eb41446fadbc/modules/module-si-standard-link.c#L333
-https://github.com/PipeWire/wireplumber/blob/15f5f96693d6155750db3713d696eb41446fadbc/modules/module-si-standard-link.c#L249
+As you can see above, the AUX30 and AUX31 channels correspond to channels 31/32 on my mixer.  What we need to do next is update the properties of this node so that those channels are renamed to FL and FR.  When wireplumber is creating links between output and input channels, it prefers to link channels with the same name.  Otherwise, it makes a best effort and eventually just falls back to picking the first two channels.  The logic for channel selection can be found [here](https://github.com/PipeWire/wireplumber/blob/15f5f96693d6155750db3713d696eb41446fadbc/modules/module-si-standard-link.c#L333) and [here](
+https://github.com/PipeWire/wireplumber/blob/15f5f96693d6155750db3713d696eb41446fadbc/modules/module-si-standard-link.c#L249).
+
 
 Creating the config file with the below contents renames the mixer channels and causes the correct channels to get linked automatically.  Just change the node name and audio position according to your device's setup. Also, for the node name, you can put only the `node.name` you got before as the string.
 I've set mine to match on the pattern below so that the name will match whether the device is configured as Pro Audio, multichannel output, etc.  When changing between those profiles the `node.name` can change which can break this config.  The pattern seen here ensures this doesn't break when switching device profiles.
